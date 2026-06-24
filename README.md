@@ -1,6 +1,8 @@
 # 📁 GitHub Community Health Templates
 
-This repository contains the **issue templates** and **pull request template** used across the project. All YAML templates follow the [GitHub issue forms schema](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema).
+This repository defines the **issue templates** and **pull request template** for the project. Templates are intentionally minimal — covering only the essential fields to lower the barrier for contributors while still giving maintainers what they need to act quickly.
+
+All YAML templates conform to the [GitHub issue forms schema](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema).
 
 ---
 
@@ -9,87 +11,98 @@ This repository contains the **issue templates** and **pull request template** u
 ```
 .github/
 ├── ISSUE_TEMPLATE/
-│   ├── bug_report.yml        # 🐛 Bug report form (13 fields, 8 required)
-│   ├── feature_request.yml   # 🚀 Feature request form (6 fields, 4 required)
-│   └── config.yml            # Issue template configuration (blank issues disabled)
-├── PULL_REQUEST_TEMPLATE.md  # Pull request checklist template
+│   ├── bug_report.yml        # 🐛 Bug report form        (5 fields, all required)
+│   ├── feature_request.yml   # 🚀 Feature request form   (4 fields, 3 required)
+│   └── config.yml            # Disables blank issues, adds browse link
+├── PULL_REQUEST_TEMPLATE.md  # PR checklist (auto-loaded on new PRs)
 └── README.md                 # This file
 ```
 
 ---
 
-## 🐛 Bug Report (`bug_report.yml`)
+## 🐛 Bug Report
 
-Used to report bugs. Trimmed from 13 → **5 fields**, all required — fast to fill, nothing skippable.
+**File:** `ISSUE_TEMPLATE/bug_report.yml`
+**Label applied:** `bug`
 
-| Field | Type | Required |
+A focused form for reporting bugs — 5 fields, all required. No optional noise.
+
+| # | Field | Type |
 |---|---|---|
-| 🌍 Environment | Dropdown (DEV / TEST / UAT / PRD) | ✅ |
-| 📝 What happened? | Textarea (expected vs. actual) | ✅ |
-| 🔁 Steps to Reproduce | Textarea | ✅ |
-| 🧩 Code / Error Output | Textarea (Python + traceback) | ✅ |
-| 🛠️ Environment Info | Textarea (versions + OS) | ✅ |
+| 1 | 🌍 Environment | Dropdown — DEV / TEST / UAT / PRD |
+| 2 | 📝 What happened? | Textarea — expected vs. actual behaviour |
+| 3 | 🔁 Steps to Reproduce | Textarea — numbered steps |
+| 4 | 🧩 Code / Error Output | Textarea — minimal snippet + traceback |
+| 5 | 🛠️ Environment Info | Textarea — FastAPI, Python, OS versions |
 
 ---
 
-## 🚀 Feature Request (`feature_request.yml`)
+## 🚀 Feature Request
 
-Used to suggest new features. Trimmed from 6 → **4 fields** — environment dropdown removed, context merged into alternatives.
+**File:** `ISSUE_TEMPLATE/feature_request.yml`
+**Label applied:** `enhancement`
 
-| Field | Type | Required |
-|---|---|---|
-| 📝 What would you like? | Textarea | ✅ |
-| 💡 Why is it needed? | Textarea | ✅ |
-| 🛠️ Proposed Solution | Textarea (Python) | ✅ |
-| 🔄 Alternatives or Additional Context | Textarea | — |
+A lean form for proposing new features — 4 fields, 3 required.
 
----
-
-## ⚙️ Issue Template Config (`config.yml`)
-
-- **Blank issues are disabled** — contributors must use one of the templates above.
-- A link to browse existing issues is shown before creating a new one to avoid duplicates.
+| # | Field | Type | Required |
+|---|---|---|---|
+| 1 | 📝 What would you like? | Textarea | ✅ |
+| 2 | 💡 Why is it needed? | Textarea | ✅ |
+| 3 | 🛠️ Proposed Solution | Textarea (Python rendered) | ✅ |
+| 4 | 🔄 Alternatives or Additional Context | Textarea | — |
 
 ---
 
-## 🔀 Pull Request Template (`PULL_REQUEST_TEMPLATE.md`)
+## ⚙️ Issue Template Config
 
-Automatically loaded when opening a pull request. Includes:
+**File:** `ISSUE_TEMPLATE/config.yml`
 
-- **Description** — brief summary of changes
-- **Type of change** — Bug fix / New feature / Breaking change / Docs / Refactoring
-- **Testing details** — how the change was tested
-- **Checklist** — self-review, documentation, warnings, tests
-- **Related issues** — links to fixed or related issues
+- Blank issues are **disabled** — all contributors must use a template.
+- A **"Browse All Issues"** link is shown before opening a new issue to prevent duplicates.
+
+---
+
+## 🔀 Pull Request Template
+
+**File:** `PULL_REQUEST_TEMPLATE.md`
+
+Auto-loaded when opening any pull request. Sections:
+
+| Section | Purpose |
+|---|---|
+| **Description** | Brief summary of what changed and why |
+| **Type of change** | Bug fix / Feature / Breaking change / Docs / Refactor |
+| **How has this been tested?** | Test cases or manual steps taken |
+| **Checklist** | Self-review, docs, warnings, test coverage |
+| **Related issues** | `Fixes #` / `Relates to #` links |
 
 ---
 
 ## 🛠️ Usage
 
-### Creating an Issue
+### Reporting a Bug or Requesting a Feature
 
-1. Go to the **Issues** tab in the GitHub repository
-2. Click **New issue**
-3. Choose a template:
-   - **🐛 Bug Report** — for reporting unexpected behaviour
-   - **🚀 Feature Request** — for suggesting new features or enhancements
-4. Fill out all required fields and submit
+1. Open the **Issues** tab → click **New issue**
+2. Select a template:
+   - **🐛 Bug Report** — unexpected behaviour, crashes, incorrect output
+   - **🚀 Feature Request** — new ideas, enhancements, missing functionality
+3. Complete all required fields and submit
 
-### Creating a Pull Request
+### Opening a Pull Request
 
-1. Push your changes to a branch
-2. Open a pull request against the target branch
-3. The PR template loads automatically — fill in all sections before requesting review
+1. Push your branch and open a pull request
+2. The PR template loads automatically
+3. Fill in every section before requesting a review
 
 ---
 
-## ✅ Template Validation
+## ✅ Validation Status
 
-All templates have been validated against the GitHub issue forms schema:
+All templates pass structural validation against the GitHub issue forms schema.
 
-| File | Status | Fields | Notes |
+| File | Status | Fields | Last Validated |
 |---|---|---|---|
-| `bug_report.yml` | ✅ Valid | 5 (all required) | Streamlined from 13 fields |
-| `feature_request.yml` | ✅ Valid | 4 (3 required) | Streamlined from 6 fields |
-| `config.yml` | ✅ Valid | — | Correct `blank_issues_enabled` key |
-| `PULL_REQUEST_TEMPLATE.md` | ✅ Valid | — | Well-formed Markdown |
+| `bug_report.yml` | ✅ Pass | 5 fields · 5 required | 2026-06-24 |
+| `feature_request.yml` | ✅ Pass | 4 fields · 3 required | 2026-06-24 |
+| `config.yml` | ✅ Pass | — | 2026-06-24 |
+| `PULL_REQUEST_TEMPLATE.md` | ✅ Pass | — | 2026-06-24 |
