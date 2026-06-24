@@ -20,38 +20,28 @@ This repository contains the **issue templates** and **pull request template** u
 
 ## 🐛 Bug Report (`bug_report.yml`)
 
-Used to report bugs. Opens a structured form with the following fields:
+Used to report bugs. Trimmed from 13 → **5 fields**, all required — fast to fill, nothing skippable.
 
 | Field | Type | Required |
 |---|---|---|
 | 🌍 Environment | Dropdown (DEV / TEST / UAT / PRD) | ✅ |
-| 📝 Bug Description | Textarea | ✅ |
+| 📝 What happened? | Textarea (expected vs. actual) | ✅ |
 | 🔁 Steps to Reproduce | Textarea | ✅ |
-| ✅ Expected Behavior | Textarea | ✅ |
-| ❌ Actual Behavior | Textarea | ✅ |
-| 🧩 Minimal Reproducible Example | Textarea (Python) | — |
-| ⚡ FastAPI Version | Input | ✅ |
-| 🐍 Python Version | Input | ✅ |
-| 💻 Operating System | Input | ✅ |
-| 🔷 Pydantic Version | Input | — |
-| 🦄 Uvicorn / Starlette Version | Input | — |
-| 🔴 Error Output / Traceback | Textarea (shell) | — |
-| 💬 Additional Context | Textarea | — |
+| 🧩 Code / Error Output | Textarea (Python + traceback) | ✅ |
+| 🛠️ Environment Info | Textarea (versions + OS) | ✅ |
 
 ---
 
 ## 🚀 Feature Request (`feature_request.yml`)
 
-Used to suggest new features or enhancements. Opens a structured form with the following fields:
+Used to suggest new features. Trimmed from 6 → **4 fields** — environment dropdown removed, context merged into alternatives.
 
 | Field | Type | Required |
 |---|---|---|
-| 🌍 Target Environment | Dropdown (DEV / TEST / UAT / PRD / All) | ✅ |
-| 📝 Summary | Textarea | ✅ |
-| 💡 Motivation / Use Case | Textarea | ✅ |
+| 📝 What would you like? | Textarea | ✅ |
+| 💡 Why is it needed? | Textarea | ✅ |
 | 🛠️ Proposed Solution | Textarea (Python) | ✅ |
-| 🔄 Alternatives Considered | Textarea | — |
-| 💬 Additional Context | Textarea | — |
+| 🔄 Alternatives or Additional Context | Textarea | — |
 
 ---
 
@@ -97,9 +87,9 @@ Automatically loaded when opening a pull request. Includes:
 
 All templates have been validated against the GitHub issue forms schema:
 
-| File | Status | Notes |
-|---|---|---|
-| `bug_report.yml` | ✅ Valid | No duplicate IDs, all types supported |
-| `feature_request.yml` | ✅ Valid | No duplicate IDs, all types supported |
-| `config.yml` | ✅ Valid | Correct `blank_issues_enabled` key |
-| `PULL_REQUEST_TEMPLATE.md` | ✅ Valid | Well-formed Markdown |
+| File | Status | Fields | Notes |
+|---|---|---|---|
+| `bug_report.yml` | ✅ Valid | 5 (all required) | Streamlined from 13 fields |
+| `feature_request.yml` | ✅ Valid | 4 (3 required) | Streamlined from 6 fields |
+| `config.yml` | ✅ Valid | — | Correct `blank_issues_enabled` key |
+| `PULL_REQUEST_TEMPLATE.md` | ✅ Valid | — | Well-formed Markdown |

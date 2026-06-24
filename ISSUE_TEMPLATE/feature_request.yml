@@ -9,28 +9,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 🚀 Feature Request
-        Thanks for suggesting a new feature! Please fill out the form below.
-        > 💡 Before submitting, please search [existing issues](../../issues) to see if this has already been requested.
-
-  - type: dropdown
-    id: environment
-    attributes:
-      label: 🌍 Target Environment
-      description: Which environment is this feature intended for?
-      options:
-        - "🧑‍💻 DEV — Development"
-        - "🧪 TEST — Testing"
-        - "🔎 UAT — User Acceptance Testing"
-        - "🚀 PRD — Production"
-        - "🌐 All Environments"
-    validations:
-      required: true
+        > 💡 Please search [existing issues](../../issues) before submitting to see if this has already been requested.
 
   - type: textarea
     id: summary
     attributes:
-      label: 📝 Summary
+      label: 📝 What would you like?
       description: A clear and concise description of the feature you are requesting.
       placeholder: Describe the feature...
     validations:
@@ -39,8 +23,8 @@ body:
   - type: textarea
     id: motivation
     attributes:
-      label: 💡 Motivation / Use Case
-      description: Why is this feature needed? What problem does it solve?
+      label: 💡 Why is it needed?
+      description: What problem does this solve? What's your use case?
       placeholder: Explain the problem this feature would solve...
     validations:
       required: true
@@ -49,7 +33,7 @@ body:
     id: proposed-solution
     attributes:
       label: 🛠️ Proposed Solution
-      description: Describe the solution you'd like. Include example API usage if relevant.
+      description: How would you like it to work? Include example usage if relevant.
       render: python
       placeholder: |
         # Example of how the feature might look/work
@@ -59,12 +43,6 @@ body:
   - type: textarea
     id: alternatives
     attributes:
-      label: 🔄 Alternatives Considered
-      description: Describe any alternative solutions or features you've considered, and why you prefer your proposed solution.
-      placeholder: What alternatives did you consider?
-
-  - type: textarea
-    id: additional-context
-    attributes:
-      label: 💬 Additional Context
-      description: Add any other context, mockups, or screenshots about the feature request here.
+      label: 🔄 Alternatives or Additional Context
+      description: Any alternatives you've considered, workarounds, or extra context.
+      placeholder: What else should we know?
