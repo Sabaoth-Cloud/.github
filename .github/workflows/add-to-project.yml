@@ -1,8 +1,21 @@
-name: Add issues to project board
+name: Add issues to project board (Reusable)
 
 on:
-  issues:
-    types: [opened]
+  workflow_call:
+    inputs:
+      project-url:
+        description: Full URL of the GitHub Project board (e.g. https://github.com/orgs/Sabaoth-Cloud/projects/1)
+        required: true
+        type: string
+      labeled:
+        description: Comma-separated list of labels that trigger adding the issue to the board
+        required: false
+        type: string
+        default: "bug, enhancement"
+    secrets:
+      ADD_TO_PROJECT_PAT:
+        description: Personal Access Token with repo and project scopes
+        required: true
 
 jobs:
   add-to-board:
@@ -10,6 +23,6 @@ jobs:
     steps:
       - uses: actions/add-to-project@v2
         with:
-          project-url: https://github.com/orgs/Sabaoth-Cloud/projects/<PROJECT_NUMBER>
+          project-url: ${{ inputs.project-url }}
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          labeled: bug, enhancement
+          labeled: ${{ inputs.labeled }}
