@@ -9,11 +9,20 @@ All YAML templates conform to the [GitHub issue forms schema](https://docs.githu
 ## 📂 Structure
 
 ```
-.github/
+Sabaoth-Cloud/.github (repo root)
+├── .github/workflows/
+│   ├── add-to-project.yml           # Reusable — adds labeled issues to project board
+│   ├── add-to-project-on-issue.yml  # Caller for this repo's issues
+│   └── validate.yml                 # CI — validates templates and workflows
+├── workflow-templates/
+│   ├── add-to-project-on-issue.yml       # Starter workflow for all org repos
+│   └── add-to-project-on-issue.properties.json
 ├── ISSUE_TEMPLATE/
 │   ├── bug_report.yml        # 🐛 Bug report form        (5 fields, all required)
 │   ├── feature_request.yml   # 🚀 Feature request form   (4 fields, 3 required)
 │   └── config.yml            # Disables blank issues, adds browse link
+├── scripts/
+│   └── validate.mjs          # Local validation script (also runs in CI)
 ├── PULL_REQUEST_TEMPLATE.md  # PR checklist (auto-loaded on new PRs)
 └── README.md                 # This file
 ```
@@ -78,6 +87,32 @@ Auto-loaded when opening any pull request. Sections:
 
 ---
 
+## 📋 Project board automation (org-wide)
+
+Issues labeled `bug` or `enhancement` are added to the org project board at
+`https://github.com/orgs/Sabaoth-Cloud/projects/1`.
+
+### One-time org setup
+
+1. Create an organization secret **`ADD_TO_PROJECT_PAT`** (PAT with `repo` and `project` scopes).
+2. Set repository access to **All repositories** (or select repos that should use the board).
+
+### Enable in each repository
+
+GitHub cannot run workflows from this repo on issues opened in other repos automatically.
+Each repository needs the caller workflow once:
+
+1. Open the repo → **Actions** → **New workflow**
+2. Choose **Add issues to project board** (from org starter workflows)
+3. Click **Configure** → **Commit**
+
+The starter workflow lives in `workflow-templates/add-to-project-on-issue.yml` and calls the
+shared reusable workflow `Sabaoth-Cloud/.github/.github/workflows/add-to-project.yml@main`.
+
+Issues filed in **this** `.github` repository are covered by `.github/workflows/add-to-project-on-issue.yml`.
+
+---
+
 ## 🛠️ Usage
 
 ### Reporting a Bug or Requesting a Feature
@@ -98,11 +133,23 @@ Auto-loaded when opening any pull request. Sections:
 
 ## ✅ Validation Status
 
-All templates pass structural validation against the GitHub issue forms schema.
+All templates and workflows pass structural validation. CI runs `node scripts/validate.mjs` and
+actionlint on every push and pull request to `main`.
 
-| File | Status | Fields | Last Validated |
+| File | Status | Detail | Last Validated |
 |---|---|---|---|
-| `bug_report.yml` | ✅ Pass | 5 fields · 5 required | 2026-06-24 |
-| `feature_request.yml` | ✅ Pass | 4 fields · 3 required | 2026-06-24 |
-| `config.yml` | ✅ Pass | — | 2026-06-24 |
-| `PULL_REQUEST_TEMPLATE.md` | ✅ Pass | — | 2026-06-24 |
+| `ISSUE_TEMPLATE/bug_report.yml` | ✅ Pass | 5 fields · 5 required | 2026-06-24 |
+| `ISSUE_TEMPLATE/feature_request.yml` | ✅ Pass | 4 fields · 3 required | 2026-06-24 |
+| `ISSUE_TEMPLATE/config.yml` | ✅ Pass | blank issues disabled | 2026-06-24 |
+| `PULL_REQUEST_TEMPLATE.md` | ✅ Pass | 5 sections present | 2026-06-24 |
+| `.github/workflows/add-to-project.yml` | ✅ Pass | reusable workflow | 2026-06-24 |
+| `.github/workflows/add-to-project-on-issue.yml` | ✅ Pass | local caller | 2026-06-24 |
+| `.github/workflows/validate.yml` | ✅ Pass | CI validation workflow | 2026-06-24 |
+| `workflow-templates/add-to-project-on-issue.yml` | ✅ Pass | org starter workflow | 2026-06-24 |
+| `workflow-templates/add-to-project-on-issue.properties.json` | ✅ Pass | starter metadata | 2026-06-24 |
+
+### Run validation locally
+
+```bash
+node scripts/validate.mjs
+```
