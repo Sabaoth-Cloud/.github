@@ -1,8 +1,6 @@
 {
-  "name": "Add issues to project board",
-  "description": "Adds issues labeled bug or enhancement to the Sabaoth-Cloud org project board when opened or labeled.",
-  "iconName": "octicon project",
-  "categories": [
-    "Automation"
-  ]
+  "name": "Add to Project on Issue",
+  "description": "Automatically adds issues to project board",
+  "iconName": "issue-opened",
+  "categories": ["automation"]
 }

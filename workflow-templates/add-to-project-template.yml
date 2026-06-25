@@ -1,4 +1,4 @@
-name: Add to Project
+name: Add to Project Template
 on:
   workflow_call:
     secrets:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/add-to-project@v2
         with:
-          add-to-project-url: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          add-to-project-url: Sabaoth-Cloud/.github/.github/workflows/add-to-project.yml@main

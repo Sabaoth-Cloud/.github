@@ -1,5 +1,5 @@
 name: 🚀 Feature Request
-description: Suggest a new feature or enhancement for FastAPI
+description: Suggest a new feature or enhancement
 title: "🚀 [FEATURE] <short description>"
 labels:
   - enhancement
@@ -34,7 +34,6 @@ body:
     attributes:
       label: 🛠️ Proposed Solution
       description: How would you like it to work? Include example usage if relevant.
-      render: python
       placeholder: |
         # Example of how the feature might look/work
     validations:

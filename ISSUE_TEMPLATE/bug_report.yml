@@ -1,5 +1,5 @@
 name: 🐛 Bug Report
-description: Report a bug to help us improve FastAPI
+description: Report a bug to help us improve
 title: "🐛 [BUG] <short description>"
 labels:
   - bug
@@ -52,12 +52,10 @@ body:
     attributes:
       label: 🧩 Code / Error Output
       description: Paste a minimal reproducible snippet and/or the full traceback.
-      render: python
       placeholder: |
         # Minimal code that triggers the bug
 
         # --- Traceback ---
-        # Paste error output here
     validations:
       required: true
 
@@ -65,10 +63,10 @@ body:
     id: version-info
     attributes:
       label: 🛠️ Environment Info
-      description: FastAPI version, Python version, OS, and any other relevant package versions.
+      description: Version information, runtime environment, OS, and any other relevant package versions.
       placeholder: |
-        FastAPI: 0.110.0
-        Python:  3.11.4
-        OS:      Ubuntu 22.04
+        Project Version: 1.0.0
+        Runtime:        (e.g., Python 3.11, Node.js 20, etc.)
+        OS:             (e.g., Ubuntu 22.04, macOS 14, Windows 11)
     validations:
       required: true
