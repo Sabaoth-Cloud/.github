@@ -1,6 +1,0 @@
-{
-  "name": "Add to Project on Issue",
-  "description": "Automatically adds issues to project board",
-  "iconName": "issue-opened",
-  "categories": ["automation"]
-}

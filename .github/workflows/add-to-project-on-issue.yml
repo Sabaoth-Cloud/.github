@@ -1,9 +1,0 @@
-name: Add to Project Caller
-on:
-  issues:
-    types:
-      - opened
-
-jobs:
-  add-to-project:
-    uses: ./.github/workflows/add-to-project.yml
