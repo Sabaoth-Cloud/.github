@@ -7,14 +7,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Create a Milestone named `2026 — [Initiative name]` and link Epics to it once they exist. This issue is for the one-sentence goal, the measurable outcome, and the decision log.
+        Create a Milestone named `[Target year] — [Initiative name]` and link Epics to it once they exist. Use the same year you select above so the Milestone and the Initiative stay aligned. This issue is for the one-sentence goal, the measurable outcome, and the decision log.
 
   - type: input
     id: milestone
     attributes:
       label: Linked Milestone
-      description: The Milestone that groups this Initiative's Epics.
-      placeholder: "2026 — [Initiative name]"
+      description: The Milestone that groups this Initiative's Epics. Use the same year selected above.
+      placeholder: "[Target year] — [Initiative name]"
     validations:
       required: true
 
