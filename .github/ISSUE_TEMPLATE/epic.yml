@@ -1,0 +1,58 @@
+name: Epic
+description: A major deliverable that breaks an Initiative into Stories. Owned by the Engineering Lead — usually spans one quarter.
+title: "[EPIC] "
+labels:
+  - Epic
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Set the parent **Milestone** (the Initiative) and the **Assignee** (Engineering Lead) in the sidebar — Issue Forms can't set those automatically.
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What this epic delivers
+      description: The outcome that exists once this is done — not a list of tasks.
+      placeholder: "e.g. Users can pay in UGX with live USD conversion at checkout."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-stories
+    attributes:
+      label: Expected stories
+      description: Rough list of the stories this should break into. Expect this to evolve as engineers pull work and refine scope.
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: How we know the epic — not any single story — is complete.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target-quarter
+    attributes:
+      label: Target quarter
+      options:
+        - Q1
+        - Q2
+        - Q3
+        - Q4
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Known risks or dependencies
+      description: Anything that could push this into next quarter — flag it now so it surfaces at the next epic health review, not in week 11.
+    validations:
+      required: false

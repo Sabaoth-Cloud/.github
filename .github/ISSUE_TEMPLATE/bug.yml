@@ -1,0 +1,77 @@
+name: Bug
+description: Something is broken. Picked up by an engineer based on severity.
+title: "[BUG] "
+labels:
+  - Bug
+body:
+  - type: checkboxes
+    id: duplicate-check
+    attributes:
+      label: Before you file
+      options:
+        - label: I searched open issues and this isn't a duplicate
+          required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: This drives the response SLA — set it honestly, not optimistically.
+      options:
+        - "P0 — Critical (same day)"
+        - "P1 — High (24 hrs)"
+        - "P2 — Medium (next sprint)"
+        - "P3 — Low (backlog)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Where this happened.
+      placeholder: "e.g. staging cluster, PROD-MSP-VM-4, mobile app v2.3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs / screenshots
+      description: Paste error output, stack traces, or drag in screenshots.
+    validations:
+      required: false
+
+  - type: input
+    id: related
+    attributes:
+      label: Related Epic or Story
+      description: Issue number, if this traces back to a specific piece of work.
+      placeholder: "#123"
+    validations:
+      required: false

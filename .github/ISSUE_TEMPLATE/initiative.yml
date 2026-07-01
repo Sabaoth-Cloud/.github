@@ -1,0 +1,57 @@
+name: Initiative
+description: A strategic goal owned by leadership. Represented as a GitHub Milestone for rollup — this issue holds the narrative, decisions, and links.
+title: "[INITIATIVE] "
+labels:
+  - Initiative
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Also create a Milestone named `2026 — [Initiative name]` and link Epics to it once they exist — the Milestone is what rolls up progress. This issue is for the one-sentence goal, the measurable outcome, and the decision log.
+
+  - type: input
+    id: milestone
+    attributes:
+      label: Linked Milestone
+      description: The Milestone that groups this initiative's Epics.
+      placeholder: "2026 — [Initiative name]"
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: One sentence. What strategic outcome does this deliver?
+      placeholder: "e.g. Launch Tranzio in one city."
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Measurable outcome
+      description: How we'll know this succeeded — a number, a launch, a percentage. Something checkable, not a feeling.
+    validations:
+      required: true
+
+  - type: textarea
+    id: epics
+    attributes:
+      label: Epics under this initiative
+      description: Rough list. Refine once the Engineering Lead breaks it down.
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: false
+
+  - type: dropdown
+    id: year
+    attributes:
+      label: Target year
+      options:
+        - "2026"
+        - "2027"
+    validations:
+      required: true

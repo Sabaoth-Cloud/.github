@@ -1,14 +1,23 @@
 # Organization Default Health Files
 
-This `.github` repository contains the default community health files for our organization. 
+This repository stores the organization's default community health files and GitHub fallback templates. Any public or private repository in the organization that does not define its own `.github` files will automatically inherit these defaults.
 
-Files placed in this repository are automatically used as fallbacks by GitHub for all public and private repositories within our organization that do not have their own specific files configured.
+## Purpose
+
+- Provide a consistent default experience for issue reporting and pull requests.
+- Ensure repositories without local `.github` templates still have basic contribution guidance.
+- Offer an organization-level fallback for repositories that do not maintain their own health files.
 
 ## Included Templates
 
 * **Bug Report** (`.github/ISSUE_TEMPLATE/bug_report.yml`): Structured YAML form for reporting bugs.
-* **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Structured YAML form for feature ideation.
+* **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Structured YAML form for suggesting improvements.
 * **Pull Request Template** (`.github/PULL_REQUEST_TEMPLATE.md`): Default checklist for PR submissions.
 
 ## Overriding Templates
-If a specific repository requires a unique workflow, you can override these defaults by creating a `.github` folder within that specific repository and placing a file with the exact same name inside it.
+
+If a repository needs a custom workflow, create a `.github` folder inside that repository and add files with the same names. GitHub will use the repository-local versions instead of these org defaults.
+
+## Maintenance
+
+This repository is maintained by the organization administrators. If you have questions about these defaults or need changes, open an issue in the relevant repository or contact the org maintainers.

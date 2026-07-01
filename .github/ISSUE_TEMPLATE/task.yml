@@ -1,0 +1,51 @@
+name: Task
+description: The specific technical work needed to complete a Story. Self-assigned by the engineer doing the work.
+title: "[TASK] "
+labels:
+  - Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Link this as a sub-issue of its parent Story if your GitHub setup supports it. Set **Sprint** and **Assignee** in the sidebar.
+
+  - type: input
+    id: parent-story
+    attributes:
+      label: Parent Story
+      description: Issue number of the Story this task belongs to.
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be done
+      description: Specific enough that another engineer could pick it up without asking you what you meant.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Checklist — what has to be true for this to move to Done.
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: Only set this if the task is time-sensitive on its own. Otherwise it inherits the parent Story's priority.
+      options:
+        - "P0 — Critical (same day)"
+        - "P1 — High (24 hrs)"
+        - "P2 — Medium (next sprint)"
+        - "P3 — Low (backlog)"
+    validations:
+      required: false
