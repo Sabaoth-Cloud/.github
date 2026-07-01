@@ -1,22 +1,28 @@
 name: Bug
-description: Something is broken. Picked up by an engineer based on severity.
+description: Report a defect, outage, or incorrect behavior that needs triage and resolution.
 title: "[BUG] "
 labels:
   - Bug
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when something is broken, inconsistent, or not working as expected. Include enough detail for another engineer to reproduce and triage it quickly.
+
   - type: checkboxes
     id: duplicate-check
     attributes:
       label: Before you file
+      description: Confirm this is a new issue rather than a duplicate.
       options:
-        - label: I searched open issues and this isn't a duplicate
+        - label: I searched open issues and this does not appear to be a duplicate
           required: false
 
   - type: dropdown
     id: priority
     attributes:
       label: Priority
-      description: This drives the response SLA — set it honestly, not optimistically.
+      description: Set this honestly so the team can triage the issue appropriately.
       options:
         - "P0 — Critical (same day)"
         - "P1 — High (24 hrs)"
@@ -28,14 +34,16 @@ body:
   - type: textarea
     id: expected
     attributes:
-      label: Expected behaviour
+      label: Expected behavior
+      description: What should happen when the feature or flow is used correctly?
     validations:
       required: true
 
   - type: textarea
     id: actual
     attributes:
-      label: Actual behaviour
+      label: Actual behavior
+      description: What is happening instead, including any error message or incorrect result?
     validations:
       required: true
 
@@ -43,6 +51,7 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce
+      description: List the exact steps someone can follow to see the issue.
       placeholder: |
         1.
         2.
@@ -54,7 +63,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Where this happened.
+      description: Where this happened, such as a browser, device, environment, or deployment.
       placeholder: "e.g. staging cluster, PROD-MSP-VM-4, mobile app v2.3"
     validations:
       required: true
@@ -63,7 +72,7 @@ body:
     id: evidence
     attributes:
       label: Logs / screenshots
-      description: Paste error output, stack traces, or drag in screenshots.
+      description: Paste error output, stack traces, or drag in screenshots that help confirm the issue.
     validations:
       required: false
 
@@ -71,7 +80,7 @@ body:
     id: related
     attributes:
       label: Related Epic or Story
-      description: Issue number, if this traces back to a specific piece of work.
+      description: Link the issue number if this traces back to a specific piece of work.
       placeholder: "#123"
     validations:
       required: false

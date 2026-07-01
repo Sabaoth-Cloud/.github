@@ -1,5 +1,5 @@
 name: Initiative
-description: A strategic goal owned by leadership. Represented as a GitHub Milestone for rollup — this issue holds the narrative, decisions, and links.
+description: A strategic goal owned by leadership and rolled up through a GitHub Milestone.
 title: "[INITIATIVE] "
 labels:
   - Initiative
@@ -7,13 +7,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Also create a Milestone named `2026 — [Initiative name]` and link Epics to it once they exist — the Milestone is what rolls up progress. This issue is for the one-sentence goal, the measurable outcome, and the decision log.
+        Create a Milestone named `2026 — [Initiative name]` and link Epics to it once they exist. This issue is for the one-sentence goal, the measurable outcome, and the decision log.
 
   - type: input
     id: milestone
     attributes:
       label: Linked Milestone
-      description: The Milestone that groups this initiative's Epics.
+      description: The Milestone that groups this Initiative's Epics.
       placeholder: "2026 — [Initiative name]"
     validations:
       required: true
@@ -31,7 +31,7 @@ body:
     id: outcome
     attributes:
       label: Measurable outcome
-      description: How we'll know this succeeded — a number, a launch, a percentage. Something checkable, not a feeling.
+      description: How we'll know this succeeded — a number, a launch, a percentage, or another checkable result.
     validations:
       required: true
 
@@ -39,7 +39,7 @@ body:
     id: epics
     attributes:
       label: Epics under this initiative
-      description: Rough list. Refine once the Engineering Lead breaks it down.
+      description: Rough list of the Epics that should be created for this Initiative. Refine as the Engineering Lead breaks it down.
       placeholder: |
         - [ ]
         - [ ]
@@ -50,6 +50,7 @@ body:
     id: year
     attributes:
       label: Target year
+      description: The year this Initiative is intended to deliver against.
       options:
         - "2026"
         - "2027"

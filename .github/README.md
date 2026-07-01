@@ -10,8 +10,11 @@ This repository stores the organization's default community health files and Git
 
 ## Included Templates
 
-* **Bug Report** (`.github/ISSUE_TEMPLATE/bug_report.yml`): Structured YAML form for reporting bugs.
-* **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Structured YAML form for suggesting improvements.
+* **Bug Report** (`.github/ISSUE_TEMPLATE/bug.yml`): Structured YAML form for reporting bugs and defects.
+* **Epic** (`.github/ISSUE_TEMPLATE/epic.yml`): Structured YAML form for major deliverables that break work into stories.
+* **Initiative** (`.github/ISSUE_TEMPLATE/initiative.yml`): Structured YAML form for strategic goals tracked through milestones.
+* **Story** (`.github/ISSUE_TEMPLATE/story.yml`): Structured YAML form for sprint-sized implementation work.
+* **Task** (`.github/ISSUE_TEMPLATE/task.yml`): Structured YAML form for the specific technical work behind a story.
 * **Pull Request Template** (`.github/PULL_REQUEST_TEMPLATE.md`): Default checklist for PR submissions.
 
 ## Overriding Templates
