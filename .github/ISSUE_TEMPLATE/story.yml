@@ -1,29 +1,15 @@
 name: Story
-description: A unit of work written, self-assigned, and delivered by an engineer within one sprint.
+description: A functional unit of work written, self-assigned, and delivered by an engineer within one sprint.
 title: "[STORY] "
 labels:
   - Story
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Link this Story to its parent Epic using `#issue-number` in the description and assign it to yourself in the sidebar. Ensure the size is set.
-        
   - type: input
-    id: parent-epic
+    id: clickup-id
     attributes:
-      label: Parent Epic
-      description: Issue number of the Epic this story belongs to.
-      placeholder: "#123"
-    validations:
-      required: true
-
-  - type: input
-    id: feature-area
-    attributes:
-      label: Feature Area
-      description: What feature area does this belong to? Do not use labels for feature areas.
-      placeholder: "e.g. Authentication, Checkout, User Profile"
+      label: ClickUp Strategic ID
+      description: The ClickUp Task ID associated with this story (e.g., #CU-86bx123).
+      placeholder: "#CU-86bx123"
     validations:
       required: true
 
@@ -31,7 +17,7 @@ body:
     id: user-story
     attributes:
       label: User Story
-      description: Replace the bracketed text with your specific requirements.
+      description: "As a [user], I can [action] so that [outcome]."
       value: "As a [user], I can [action] so that [outcome]."
     validations:
       required: true
@@ -39,7 +25,7 @@ body:
   - type: textarea
     id: acceptance-criteria
     attributes:
-      label: Acceptance criteria
+      label: Acceptance Criteria
       description: Checklist of what has to be true for this to move to Done.
       placeholder: |
         - [ ] 
@@ -51,7 +37,7 @@ body:
     id: size
     attributes:
       label: Size
-      description: Estimated effort. Set during backlog grooming and used in sprint planning.
+      description: Estimated effort.
       options:
         - "Small (1 day)"
         - "Medium (2–3 days)"

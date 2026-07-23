@@ -1,25 +1,30 @@
 # Organization Default Health Files
 
-This repository stores the organization's default community health files and GitHub fallback templates. Any public or private repository in the organization that does not define its own `.github` files will automatically inherit these defaults.
+This repository stores the organization's default community health files, GitHub issue templates, and sync workflow defaults. Any public or private repository in the organization that does not define its own `.github` files will automatically inherit these defaults.
 
 ## Purpose
 
 - Provide a consistent default experience for issue reporting and pull requests.
-- Ensure repositories without local `.github` templates still have basic contribution guidance.
+- Ensure repositories without local `.github` templates still have mandatory ClickUp linkage and contribution guidance.
 - Offer an organization-level fallback for repositories that do not maintain their own health files.
 
 ## Included Templates
 
-* **Bug Report** (`.github/ISSUE_TEMPLATE/bug.yml`): Structured YAML form for reporting bugs and defects.
-* **Epic** (`.github/ISSUE_TEMPLATE/epic.yml`): Structured YAML form for major deliverables that break work into stories.
-* **Initiative** (`.github/ISSUE_TEMPLATE/initiative.yml`): Structured YAML form for strategic goals tracked through milestones.
-* **Story** (`.github/ISSUE_TEMPLATE/story.yml`): Structured YAML form for sprint-sized implementation work.
-* **Task** (`.github/ISSUE_TEMPLATE/task.yml`): Structured YAML form for the specific technical work behind a story.
-* **Pull Request Template** (`.github/PULL_REQUEST_TEMPLATE.md`): Default checklist for PR submissions.
+* **Story** (`.github/ISSUE_TEMPLATE/story.yml`): Structured YAML form for sprint-sized implementation work that requires a ClickUp Strategic ID.
+* **Task** (`.github/ISSUE_TEMPLATE/task.yml`): Structured YAML form for technical work tied to a parent GitHub Story and ClickUp ID.
+* **Bug** (`.github/ISSUE_TEMPLATE/bug.yml`): Structured YAML form for defects with enforced priority and ClickUp ID linkage.
+* **Pull Request Template** (`.github/PULL_REQUEST_TEMPLATE.md`): Default PR checklist and ClickUp ID confirmation section.
+
+## ClickUp Sync Workflow
+
+This repository also includes a default GitHub Action that reads branch names, PR titles, and PR bodies to extract a `CU-` ClickUp ID and update task status automatically.
+
+* Workflow: `.github/workflows/clickup-sync.yml`
+* Operation: sets status to `in review` on opened PRs and `done` on merged PRs.
 
 ## Overriding Templates
 
-If a repository needs a custom workflow, create a `.github` folder inside that repository and add files with the same names. GitHub will use the repository-local versions instead of these org defaults.
+If a repository needs a custom workflow or different templates, create a `.github` folder inside that repository and add files with the same names. GitHub will use the repository-local versions instead of these org defaults.
 
 ## Maintenance
 

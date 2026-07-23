@@ -1,0 +1,61 @@
+name: ClickUp Task Status Sync
+
+on:
+    pull_request:
+        types: [opened, closed]
+
+jobs:
+    sync_clickup:
+        name: Sync Status to ClickUp
+        runs-on: ubuntu-latest
+        steps:
+            - name: Extract ClickUp Task ID
+              id: extract_id
+              run: |
+                  # Concatenate branch name, title, and the full PR body to ensure we catch the ID
+                  SEARCH_STRING="${{ github.head_ref }} ${{ github.event.pull_request.title }} ${{ github.event.pull_request.body }}"
+                  echo "Searching for ID in PR content..."
+
+                  # Extract the alphanumeric characters following 'CU-'
+                  # This works regardless of whether it was in the branch name or the issue template form
+                  TASK_ID=$(echo "$SEARCH_STRING" | grep -oE 'CU-[A-Za-z0-9]+' | head -n 1 | sed 's/CU-//')
+
+                  if [ -z "$TASK_ID" ]; then
+                    echo "No ClickUp ID found. Skipping sync."
+                    echo "has_id=false" >> $GITHUB_OUTPUT
+                  else
+                    echo "Found Task ID: $TASK_ID"
+                    echo "has_id=true" >> $GITHUB_OUTPUT
+                    echo "task_id=$TASK_ID" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Determine Target ClickUp Status
+              id: determine_status
+              if: steps.extract_id.outputs.has_id == 'true'
+              run: |
+                  # If the PR is newly opened, set status to "in review"
+                  if [ "${{ github.event.action }}" = "opened" ]; then
+                    echo "status=in review" >> $GITHUB_OUTPUT
+
+                  # If the PR is closed AND merged, set status to "done"
+                  elif [ "${{ github.event.action }}" = "closed" ] && [ "${{ github.event.pull_request.merged }}" = 'true' ]; then
+                    echo "status=done" >> $GITHUB_OUTPUT
+
+                  # Otherwise, do not sync
+                  else
+                    echo "status=skip" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Send API Request to ClickUp
+              if: steps.extract_id.outputs.has_id == 'true' && steps.determine_status.outputs.status != 'skip'
+              run: |
+                  TARGET_STATUS="${{ steps.determine_status.outputs.status }}"
+                  TASK_ID="${{ steps.extract_id.outputs.task_id }}"
+
+                  echo "Updating ClickUp Task $TASK_ID to status: $TARGET_STATUS"
+
+                  curl -i -X PUT \
+                    "https://api.clickup.com/api/v2/task/$TASK_ID" \
+                    -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"status\": \"$TARGET_STATUS\"}"

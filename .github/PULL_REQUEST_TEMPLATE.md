@@ -1,30 +1,23 @@
-# Pull Request Template
+## Summary
+<!-- Explain what this PR changes and why -->
 
-> THIS PROJECT IS IN MAINTENANCE MODE. Pull requests are accepted for bug fixes **only**. New features are not accepted at this time.
-
-## Description
-
-Provide a summary of the changes and the problem being fixed.
-
-## Related Issue
-
-Link the issue number or describe the bug report that this PR addresses.
-
-## Motivation and Context
-
-Explain why this fix is needed and how it addresses the reported issue.
-
-## How Has This Been Tested?
-
-Describe the steps taken to verify the fix and any validation performed.
+## ClickUp Strategic ID
+<!-- MUST include the ClickUp ID to enable status automation. -->
+<!-- Example: #CU-86bx123 -->
+**ClickUp ID:** 
 
 ## Checklist
+- [ ] Code follows project style guidelines.
+- [ ] Unit tests are included and passing.
+- [ ] Integration tests are included and passing.
+- [ ] Security scans/Lint checks are passing.
+- [ ] Documentation is updated (API specs, README).
+- [ ] PR title follows convention: `[ISSUE-ID] Short Description`.
 
-- [ ] I confirm this PR is a bug fix and not a new feature.
-- [ ] I have linked the related issue or described the bug clearly.
-- [ ] I have tested the changes and included verification details.
-- [ ] I have updated documentation if needed.
+## Type of Change
+- [ ] Bug fix (non-breaking change)
+- [ ] New feature (non-breaking change)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work)
 
-## Screenshots (if appropriate)
-
-Include screenshots or logs if they help explain the fix.
+## Automated Sync Verification
+By submitting this PR, I confirm that the ClickUp ID provided above matches the task I am working on, allowing the automated GitHub Action to move the status to "In Review".

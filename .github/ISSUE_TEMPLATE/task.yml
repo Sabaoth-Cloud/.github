@@ -4,16 +4,20 @@ title: "[TASK] "
 labels:
   - Task
 body:
-  - type: markdown
+  - type: input
+    id: clickup-id
     attributes:
-      value: |
-        Link this as a sub-issue of its parent Story if your GitHub setup supports it, and set the Sprint and Assignee in the sidebar.
+      label: ClickUp Strategic ID
+      description: The ClickUp Task ID associated with this task.
+      placeholder: "#CU-86bx123"
+    validations:
+      required: true
 
   - type: input
     id: parent-story
     attributes:
-      label: Parent Story
-      description: Issue number of the Story this task belongs to.
+      label: Parent GitHub Story
+      description: Issue number of the GitHub Story this task belongs to.
       placeholder: "#123"
     validations:
       required: true
@@ -22,7 +26,7 @@ body:
     id: description
     attributes:
       label: What needs to be done
-      description: Be specific enough that another engineer could pick this up without asking what you meant.
+      placeholder: "e.g., Configure Kubernetes operators for the new PostgreSQL cluster."
     validations:
       required: true
 
@@ -30,22 +34,6 @@ body:
     id: acceptance-criteria
     attributes:
       label: Acceptance criteria
-      description: Checklist for what has to be true for this task to move to Done.
-      placeholder: |
-        - [ ]
-        - [ ]
+      description: Checklist — what has to be true for this to move to Done.
     validations:
       required: true
-
-  - type: dropdown
-    id: priority
-    attributes:
-      label: Priority
-      description: Only set this if the task is time-sensitive on its own. Otherwise it inherits the parent Story's priority.
-      options:
-        - "P0 — Critical (same day)"
-        - "P1 — High (24 hrs)"
-        - "P2 — Medium (next sprint)"
-        - "P3 — Low (backlog)"
-    validations:
-      required: false

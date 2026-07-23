@@ -1,28 +1,13 @@
 name: Bug
-description: Report a defect, outage, or incorrect behavior that needs triage and resolution.
+description: Software defects or regressions identified during development, staging, or production.
 title: "[BUG] "
 labels:
   - Bug
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Use this template when something is broken, inconsistent, or not working as expected. Include enough detail for another engineer to reproduce and triage it quickly.
-
-  - type: checkboxes
-    id: duplicate-check
-    attributes:
-      label: Before you file
-      description: Confirm this is a new issue rather than a duplicate.
-      options:
-        - label: I searched open issues and this does not appear to be a duplicate
-          required: false
-
   - type: dropdown
     id: priority
     attributes:
-      label: Priority
-      description: Set this honestly so the team can triage the issue appropriately.
+      label: Priority (SLA)
       options:
         - "P0 — Critical (same day)"
         - "P1 — High (24 hrs)"
@@ -31,19 +16,26 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: clickup-id
+    attributes:
+      label: ClickUp Strategic ID
+      description: The associated ClickUp Task ID for status tracking.
+      placeholder: "#CU-86bx123"
+    validations:
+      required: true
+
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
-      description: What should happen when the feature or flow is used correctly?
+      label: Expected behaviour
     validations:
       required: true
 
   - type: textarea
     id: actual
     attributes:
-      label: Actual behavior
-      description: What is happening instead, including any error message or incorrect result?
+      label: Actual behaviour
     validations:
       required: true
 
@@ -51,7 +43,6 @@ body:
     id: steps
     attributes:
       label: Steps to reproduce
-      description: List the exact steps someone can follow to see the issue.
       placeholder: |
         1.
         2.
@@ -63,24 +54,6 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Where this happened, such as a browser, device, environment, or deployment.
-      placeholder: "e.g. staging cluster, PROD-MSP-VM-4, mobile app v2.3"
+      placeholder: "e.g., staging cluster, PROD-MSP-VM-4"
     validations:
       required: true
-
-  - type: textarea
-    id: evidence
-    attributes:
-      label: Logs / screenshots
-      description: Paste error output, stack traces, or drag in screenshots that help confirm the issue.
-    validations:
-      required: false
-
-  - type: input
-    id: related
-    attributes:
-      label: Related Epic or Story
-      description: Link the issue number if this traces back to a specific piece of work.
-      placeholder: "#123"
-    validations:
-      required: false
