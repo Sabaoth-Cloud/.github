@@ -2,31 +2,47 @@ name: Add org issues to project
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour; adjust as needed
-  workflow_dispatch:       # lets you run it manually (e.g. to backfill)
+    - cron: "0 * * * *"   # every hour
+  workflow_dispatch:
     inputs:
       days:
         description: "How many days back to look"
-        default: "1"
+        type: number
+        default: 1
 
 jobs:
   add-to-project:
     runs-on: ubuntu-latest
-    steps:
-      - name: Add recent issues to the project
-        env:
-          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
-          ORG: your-org-name          # <-- change me
-          PROJECT_NUMBER: 1           # <-- the number in your project's URL
-          DAYS: ${{ inputs.days || '1' }}
-        run: |
-          since=$(date -u -d "$DAYS days ago" +%Y-%m-%d)
-          echo "Looking for issues in $ORG created since $since"
 
-          gh search issues --owner "$ORG" --created ">=$since" \
-            --limit 1000 --json url --jq '.[].url' |
-          while read -r url; do
-            echo "Adding $url"
-            gh project item-add "$PROJECT_NUMBER" --owner "$ORG" --url "$url" > /dev/null \
-              || echo "::warning::Could not add $url"
-          done
+    permissions:
+      contents: read
+
+    env:
+      GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+      ORG: Sabaoth-Cloud
+      PROJECT_NUMBER: 1
+      DAYS: ${{ github.event_name == 'workflow_dispatch' && inputs.days || '1' }}
+
+    steps:
+      - name: Add recent open issues to the org project
+        shell: bash
+        run: |
+          since=$(date -u -d "${DAYS} days ago" +%F)
+          echo "Looking for open issues in ${ORG} created since ${since}"
+
+          gh search issues \
+            --owner "${ORG}" \
+            --state open \
+            --type issue \
+            --created ">=${since}" \
+            --limit 1000 \
+            --json url \
+            --jq '.[].url' \
+          | while IFS= read -r url; do
+              [[ -z "${url}" ]] && continue
+              echo "Adding ${url}"
+              gh project item-add "${PROJECT_NUMBER}" \
+                --owner "${ORG}" \
+                --url "${url}" \
+                >/dev/null 2>&1 || echo "::warning::Could not add ${url} (already on board or permission issue)"
+            done
