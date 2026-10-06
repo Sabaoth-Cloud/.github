@@ -54,6 +54,6 @@ body:
     id: environment
     attributes:
       label: Environment
-      placeholder: "e.g., staging cluster, PROD-MSP-VM-4"
+      placeholder: "e.g., staging, production"
     validations:
       required: true
