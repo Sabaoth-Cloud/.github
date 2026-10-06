@@ -1,6 +1,6 @@
 # Organization Default Health Files
 
-This repository stores the organization's default community health files, GitHub issue templates, and sync workflow defaults. Any public or private repository in the organization that does not define its own `.github` files will automatically inherit these defaults.
+This public repository stores the organization's default community health files, GitHub issue templates, and workflow templates. Any public or private repository in the organization that does not define its own `.github` files will automatically inherit these defaults. Nothing sensitive belongs here: workflow logic lives in the private `Sabaoth-Cloud/org-workflows` repository.
 
 ## Purpose
 
@@ -17,14 +17,15 @@ This repository stores the organization's default community health files, GitHub
 
 ## ClickUp Sync Workflow
 
-This repository also includes a default GitHub Action that reads branch names, PR titles, and PR bodies to extract a `CU-` ClickUp ID and update task status automatically.
+Workflows are not inherited from this repository; each repository opts in with a small caller workflow. The sync logic is a reusable workflow in the private `Sabaoth-Cloud/org-workflows` repository. It reads branch names, PR titles, and PR bodies to extract a `CU-` ClickUp ID and update task status automatically.
 
-* Workflow: `.github/workflows/clickup-sync.yml`
+* Add it to a repository: **Actions → New workflow → "ClickUp Task Status Sync"** (template: `workflow-templates/clickup-sync.yml`).
 * Operation: sets status to `in review` on opened PRs and `done` on merged PRs.
+* Requires the org secret `CLICKUP_API_TOKEN`. Only private repositories can call the private reusable workflow.
 
 ## Overriding Templates
 
-If a repository needs a custom workflow or different templates, create a `.github` folder inside that repository and add files with the same names. GitHub will use the repository-local versions instead of these org defaults.
+If a repository needs different templates, create a `.github` folder inside that repository and add files with the same names. GitHub will use the repository-local versions instead of these org defaults. If a repository has any file in its own `.github/ISSUE_TEMPLATE` folder, none of the org issue templates are used there.
 
 ## Maintenance
 

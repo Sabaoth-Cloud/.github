@@ -1,0 +1,13 @@
+name: ClickUp Task Status Sync
+
+on:
+    pull_request:
+        types: [opened, closed]
+
+permissions:
+    contents: read
+
+jobs:
+    sync:
+        uses: Sabaoth-Cloud/org-workflows/.github/workflows/clickup-sync.yml@main
+        secrets: inherit

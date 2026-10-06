@@ -1,0 +1,6 @@
+{
+    "name": "ClickUp Task Status Sync",
+    "description": "Moves the linked ClickUp task (CU-ID in the branch, PR title, or PR body) to In Review on PR open and Done on merge.",
+    "iconName": "octicon sync",
+    "categories": ["Automation"]
+}
